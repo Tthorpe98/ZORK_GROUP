@@ -56,16 +56,21 @@ public class Item {
                     secondEvent = secondEvent.substring(0, secondEvent.length()-1);
                     events2.add(secondEvent);
                     System.out.println(eventParts[0]);
+                    //String event1 = eventParts[0].replace("[","");
                     this.events.put(eventParts[0], events2);
-                    
+
                 }
                 else//single event
                 {
                     String event = eventParts[1];
                     event = event.substring(0, event.length()-1);
+
+                    event = event.replace("[","");
+                    System.out.println(event);
                     ArrayList<String> events2 = new ArrayList<String>();
                     events2.add(event);
-                    this.events.put(verbParts[0], events2);
+
+                    this.events.put(eventParts[0], events2);
                 }
                 messages.put(eventParts[0],verbParts[1]);
             }

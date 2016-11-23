@@ -6,10 +6,10 @@
  */
 
 class ScoreCommand extends Command{
-    private int score;
+    private int score = GameState.instance().getScore();
 
-    ScoreCommand(int score){
-        this.score = score;
+    ScoreCommand(){
+
     }
 
     public String execute(){

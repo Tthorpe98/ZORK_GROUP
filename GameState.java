@@ -28,7 +28,7 @@ public class GameState {
     private Room adventurersCurrentRoom;
     
     private static int score = 0;
-    private static int health = 49;
+    private static int health = 50;
 
     static synchronized GameState instance() {
         if (theInstance == null) {
@@ -122,6 +122,8 @@ public class GameState {
     static void removeFromInventory(Item item) {
         inventory.remove(item);
     }
+
+    static void addItemToIventory(Item item) { inventory.add(item);}
 
     Item getItemInVicinityNamed(String name) throws Item.NoItemException {
 

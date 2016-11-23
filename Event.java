@@ -44,7 +44,7 @@ class Event {
      *
      */
     static int score(int score) {
-        GameState.addScore(score);
+        GameState.instance().addScore(score);
         return GameState.getScore();
     }
 
@@ -97,9 +97,11 @@ class Event {
      * @param item
      * @return
      */
-    static Item transform(Item item, Item item2) {
-        item = item2;
-        return item;
+    static void transform(Item item, Item item2) {
+
+        GameState.removeFromInventory(item);
+        GameState.addItemToIventory(item2);
+
     }
 
     /**
