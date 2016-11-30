@@ -30,39 +30,12 @@ class ItemSpecificCommand extends Command {
 
         String msg = itemReferredTo.getMessageForVerb(verb);
 
-        System.out.println(verb + "VERB BEFORE PRINT");
-
         if (itemReferredTo.getEventsForVerb(verb) != null)//if there IS at least one event for this verb
         {
-            System.out.println(verb + "THIS IS VERB");
             ArrayList<String> arrayEvent = new ArrayList<>(itemReferredTo.getEventsForVerb(verb));
 
-
-            System.out.println(arrayEvent);
-
-            //arrayEvent = itemReferredTo.getEventsForVerb(verb).split(,);
-            //String firstEvent = itemReferredTo.getEventsForVerb(verb).get(0);
-           // if(itemReferredTo.getEventsForVerb(verb).size() > 1) {
-             //   secondEvent = itemReferredTo.getEventsForVerb(verb).get(1);
-              //  String firstThreeLetter2 = secondEvent.substring(0,3);
-            //}
-
-            String firstThree = "";
-
             for (int j = 0; j < arrayEvent.size(); j++) {
-                if (firstThree.contains("\\[")) {
-                    firstThree = arrayEvent.get(j).substring(1, 4);
-                } else {
-                    firstThree = arrayEvent.get(j).substring(0, 3);
-                }
-
-                String firstThreeLetters = firstThree;
-
-
-                //String firstThreeLetters = firstEvent.substring(1, 4);
-                //String firstThreeLetters2 = secondEvent.substring(0, 3);
-                //System.out.println(firstThreeLetters);
-                //System.out.println(firstThreeLetters2);
+                String firstThreeLetters = arrayEvent.get(j).substring(0, 3);
 
                 //7-tier if-else statement
                 if (firstThreeLetters.equals("Die") || firstThreeLetters.equals("[Di")) {
@@ -78,7 +51,6 @@ class ItemSpecificCommand extends Command {
                     String effect = null;
                     ArrayList<String> effects = itemReferredTo.getEffect(verb);
                     for (int i = 0; i < effects.size(); i++) {
-                        System.out.println("THIS IS I" + effects.get(i));
                         if (effects.get(i).contains("Tra")) {
                             effect = effects.get(i);
                         }
@@ -89,16 +61,15 @@ class ItemSpecificCommand extends Command {
 
                     try {
                         newItem = game.getDungeon().getItem(newItem1);
-                        System.out.println("NEW ITEM IS" + newItem);
                     } catch (Item.NoItemException ex) {
                         newItem = null;
                     }
                     Event.transform(itemReferredTo, newItem);
                 }
-                if (firstThreeLetters.equals("Tel") || firstThreeLetters2.equals("Tel")) {
+                if (firstThreeLetters.equals("Tel") || firstThreeLetters.equals("[Te")) {
                     Event.teleport();
                 }
-                if (firstThreeLetters.equals("Sco") || firstThreeLetters2.equals("Sco")) {
+                if (firstThreeLetters.equals("Sco") || firstThreeLetters.equals("[Sc")) {
                     String effect = null;
                     ArrayList<String> effects = itemReferredTo.getEffect(verb);
                     for (int i = 0; i < effects.size(); i++) {
@@ -108,10 +79,9 @@ class ItemSpecificCommand extends Command {
                     }
 
                     int sco = Integer.valueOf(effect.substring(effect.indexOf("(") + 1, effect.indexOf(")")));
-                    System.out.println("SCO" + sco);
                     Event.score(sco);
                 }
-                if (firstThreeLetters.equals("Wou") || firstThreeLetters2.equals("Wou") || firstThreeLetters.equals("[Wo") || firstThreeLetters2.equals("[Wo")) {
+                if (firstThreeLetters.equals("Wou") || firstThreeLetters.equals("[Wo")) {
                     String effect = null;
                     ArrayList<String> effects = itemReferredTo.getEffect(verb);
                     for (int i = 0; i < effects.size(); i++) {

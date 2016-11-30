@@ -44,7 +44,6 @@ public class Item {
             if(verbParts[0].contains("["))//if there is an event
             {
                 String verby = verbParts[0].replace("[", "\n[");
-                //System.out.println(verby);
                 String hello = verby;
                 String[] eventParts = hello.split("\n");
                 String[] events = eventParts[1].split(",");
@@ -55,8 +54,6 @@ public class Item {
                     String secondEvent = events[1];
                     secondEvent = secondEvent.substring(0, secondEvent.length()-1);
                     events2.add(secondEvent);
-                    System.out.println(eventParts[0]);
-                    //String event1 = eventParts[0].replace("[","");
                     this.events.put(eventParts[0], events2);
 
                 }
@@ -66,7 +63,6 @@ public class Item {
                     event = event.substring(0, event.length()-1);
 
                     event = event.replace("[","");
-                    System.out.println(event);
                     ArrayList<String> events2 = new ArrayList<String>();
                     events2.add(event);
 
