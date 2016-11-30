@@ -28,7 +28,7 @@ public class Dungeon {
     static String ROOM_STATES_MARKER = "Room states:";
 
     private String name;
-    private Room entry;
+    private static Room entry;
     private static Hashtable<String,Room> rooms;
     private Hashtable<String,Item> items;
     private String filename;
@@ -159,7 +159,7 @@ public class Dungeon {
         }
     }
 
-    public Room getEntry() { return entry; }
+    public static Room getEntry() { return entry; }
     public String getName() { return name; }
     public String getFilename() { return filename; }
     public void add(Room room) { rooms.put(room.getTitle(),room); }

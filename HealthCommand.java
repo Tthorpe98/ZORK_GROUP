@@ -13,6 +13,7 @@ class HealthCommand extends Command{
     }
 
     public String execute(){
+        System.out.println("Your health is: " + health);
         if(health >= 90 && health <= 100){
             return "Your health is in magnificant shape.\n";
         }

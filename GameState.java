@@ -25,7 +25,7 @@ public class GameState {
     private static GameState theInstance;
     private Dungeon dungeon;
     private static ArrayList<Item> inventory;
-    private Room adventurersCurrentRoom;
+    private static Room adventurersCurrentRoom;
     
     private static int score = 0;
     private static int health = 50;
@@ -158,7 +158,7 @@ public class GameState {
         return adventurersCurrentRoom;
     }
 
-    void setAdventurersCurrentRoom(Room room) {
+    public static void setAdventurersCurrentRoom(Room room) {
         adventurersCurrentRoom = room;
     }
 

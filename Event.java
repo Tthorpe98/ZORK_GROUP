@@ -66,7 +66,10 @@ class Event {
     static String die(boolean death) {
          if(death==true)
          {
+             System.out.println("You have died...");
+             System.exit(0);
              return "You have died...";
+
          }
          return null;//this should never be returned if this method is working properly
     }
@@ -79,6 +82,8 @@ class Event {
     static String win(boolean win) {
         if(win == true)
         {
+            System.out.println("Congratulations, you won!");
+            System.exit(0);
             return "Congratulations, you won!";
         }
         return null;//should never return null
@@ -108,8 +113,10 @@ class Event {
      *
      * @return
      */
-    static Room teleport() {
-        return Dungeon.getRoom("entry");
+    static void teleport() {
+        GameState.setAdventurersCurrentRoom(Dungeon.getEntry());
+        System.out.println("You have been teleported back to the start of the Dungeon!");
+        return;
     }
 
 }
