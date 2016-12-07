@@ -1,7 +1,12 @@
 Trinkle
-Group Bork v1.0
+Group Bork v1.1
 ===
 Items:
+Key
+1
+examine:The key is made of gold, it shimmers in the light.
+use[Unlock,Disappear]:The key makes a satisying click, and the door becomes unlocked.
+---
 Bomb
 95
 examine:The bomb is a heavy, glistening black sphere. On the top appears to be some form of detonator.

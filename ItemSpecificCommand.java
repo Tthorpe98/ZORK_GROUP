@@ -22,11 +22,16 @@ class ItemSpecificCommand extends Command {
     public String execute() {
 
         Item itemReferredTo = null;
+        Exit exitReferredTo = null;
         try {
             itemReferredTo = GameState.instance().getItemInVicinityNamed(noun);
         } catch (Item.NoItemException e) {
             return "There's no " + noun + " here.";
         }
+        exitReferredTo = GameState.instance().getExitInVicinity();
+       if (exitReferredTo == null) {
+           System.out.println("There is no locked exits here!");
+       }
 
         String msg = itemReferredTo.getMessageForVerb(verb);
 
@@ -37,7 +42,10 @@ class ItemSpecificCommand extends Command {
             for (int j = 0; j < arrayEvent.size(); j++) {
                 String firstThreeLetters = arrayEvent.get(j).substring(0, 3);
 
-                //7-tier if-else statement
+                //8-tier if-else statement
+                if(firstThreeLetters.equals("Unl") || firstThreeLetters.equals("[Un")) {
+                    Event.unlock(exitReferredTo);
+                }
                 if (firstThreeLetters.equals("Die") || firstThreeLetters.equals("[Di")) {
                     Event.die(true);
                 }

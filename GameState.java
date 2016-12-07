@@ -145,6 +145,28 @@ public class GameState {
         throw new Item.NoItemException();
     }
 
+    Exit getExitInVicinity() {
+        ArrayList<Exit>exits = adventurersCurrentRoom.getExits();
+        for(Exit i: exits)
+            if(i.getExitLocked()==true) {
+                return i;
+            }
+
+            return exits.get(0);
+
+    }
+
+    Boolean getExitLockedInVicinity() {
+        ArrayList<Exit>exits = adventurersCurrentRoom.getExits();
+        for (Exit i: exits) {
+            if (i.getExitLocked()==true) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     Item getItemFromInventoryNamed(String name) throws Item.NoItemException {
 
         for (Item item : inventory) {
@@ -196,6 +218,11 @@ public class GameState {
     {
         health = health - h;
     }
-            
+
+    public static void unlockExit(Exit exit) {
+        exit.setExitLocked(false);
+    }
+
+
     
 }

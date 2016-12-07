@@ -13,12 +13,14 @@ public class Exit {
      * @param dir direction in which movement is possible from src to dest
      * @param src starting room
      * @param dest destination room
+     * @param exitLocked
      */
-    Exit(String dir, Room src, Room dest) {
+    Exit(String dir, Room src, Room dest, boolean exitLocked) {
         init();
         this.dir = dir;
         this.src = src;
         this.dest = dest;
+        this.exitLocked = exitLocked;
         src.addExit(this);
     }
 
@@ -43,6 +45,13 @@ public class Exit {
         src = d.getRoom(srcTitle);
         dir = s.nextLine();
         dest = d.getRoom(s.nextLine());
+        String temp = s.nextLine();
+        if (temp.equals("unlocked")) {
+            exitLocked = false;
+        }
+        else {
+            exitLocked = true;
+        }
 
         // I'm an Exit object. Great. Add me as an exit to my source Room too,
         // though.

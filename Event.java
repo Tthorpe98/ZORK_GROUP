@@ -111,6 +111,14 @@ class Event {
 
     /**
      *
+     * @param exit
+     */
+    static void unlock(Exit exit) {
+        GameState.unlockExit(exit);
+    }
+
+    /**
+     *
      * @return
      */
     static void teleport() {

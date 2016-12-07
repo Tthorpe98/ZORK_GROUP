@@ -18,10 +18,16 @@ class MovementCommand extends Command {
     public String execute() {
         Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
         Room nextRoom = currentRoom.leaveBy(dir);
-        if (nextRoom != null) {  // could try/catch here.
+        Boolean exitLocked = GameState.instance().getExitInVicinity().getExitLocked();
+
+        if (nextRoom != null && GameState.instance().getExitLockedInVicinity() == false) {  // could try/catch here.
             GameState.instance().setAdventurersCurrentRoom(nextRoom);
             return "\n" + nextRoom.describe() + "\n";
-        } else {
+        }
+        else if (exitLocked == true) {
+            return "This exit is locked!" + "\n";
+        }
+        else {
             return "You can't go " + dir + ".\n";
         }
     }

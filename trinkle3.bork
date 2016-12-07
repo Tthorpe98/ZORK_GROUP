@@ -1,7 +1,12 @@
 Trinkle
-Group Bork v1.0
+Group Bork v1.1
 ===
 Items:
+Key
+1
+examine:The key is made of gold, it shimmers in the light.
+use[Unlock,Disappear]:The key makes a satisying click, and the door becomes unlocked.
+---
 Bomb
 95
 examine:The bomb is a heavy, glistening black sphere. On the top appears to be some form of detonator.
@@ -50,6 +55,7 @@ stomp:The donut is now smooshed.
 ===
 Rooms:
 Rotunda
+Contents: Key
 You are in a beautiful round entry chamber, with tall white pillars that
 seemingly reach to the skies. There is an elevator here.
 ---
@@ -83,38 +89,47 @@ Exits:
 Rotunda
 u
 Rotunda balcony
+unlocked
 ---
 Rotunda balcony
 d
 Rotunda
+locked
 ---
 Rotunda
 d
 Basement hallway
+unlocked
 ---
 Basement hallway
 u
 Rotunda
+unlocked
 ---
 Basement hallway
 s
 Room B13
+unlocked
 ---
 Room B6
 w
 Basement hallway
+unlocked
 ---
 Basement hallway
 e
 Room B6
+unlocked
 ---
 Basement hallway
 w
 Stephen's office
+unlocked
 ---
 Stephen's office
 e
 Basement hallway
+unlocked
 ---
 ===
 

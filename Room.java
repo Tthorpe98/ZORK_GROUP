@@ -20,6 +20,11 @@ public class Room {
         this.title = title;
     }
 
+    public ArrayList getExits()
+    {
+        return exits;
+    }
+
     Room(Scanner s, Dungeon d) throws NoRoomException,
             Dungeon.IllegalDungeonFormatException {
 
