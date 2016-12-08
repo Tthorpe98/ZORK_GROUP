@@ -22,6 +22,7 @@ public class Dungeon {
     public static String ROOMS_MARKER = "Rooms:";
     public static String EXITS_MARKER = "Exits:";
     public static String ITEMS_MARKER = "Items:";
+    public static String NPC_MARKER = "NPC:";
 
     // Variables relating to game state (.sav) storage.
     static String FILENAME_LEADER = "Dungeon file: ";
@@ -93,12 +94,13 @@ public class Dungeon {
 
         try {
             // Instantiate and add first room (the entry).
-            entry = new Room(s, this, initState);
+            entry = new Room(s, this, initState, true);
             add(entry);
+
 
             // Instantiate and add other rooms.
             while (true) {
-                add(new Room(s, this, initState));
+                add(new Room(s, this, initState, true));
             }
         } catch (Room.NoRoomException e) {  /* end of rooms */ }
 
@@ -114,6 +116,14 @@ public class Dungeon {
                 Exit exit = new Exit(s, this);
             }
         } catch (Exit.NoExitException e) {  /* end of exits */ }
+
+        if(!s.nextLine().equals(NPC_MARKER)) {
+            throw new IllegalDungeonFormatException("No " + NPC_MARKER + " line where expected.");
+        }
+
+
+
+
 
         s.close();
     }
@@ -164,6 +174,7 @@ public class Dungeon {
     public String getFilename() { return filename; }
     public void add(Room room) { rooms.put(room.getTitle(),room); }
     public void add(Item item) { items.put(item.getPrimaryName(),item); }
+    public void add(NPC npc) {npc.setLocation(getRoom("Stephen's office"));}
 
     public static Room getRoom(String roomTitle) {
         return rooms.get(roomTitle);

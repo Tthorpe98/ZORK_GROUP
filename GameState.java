@@ -23,7 +23,7 @@ public class GameState {
     static String INVENTORY_LEADER = "Inventory: ";
 
 
-    private static GameState theInstance;
+    public static GameState theInstance;
     private Dungeon dungeon;
     private static ArrayList<Item> inventory;
     private static Room adventurersCurrentRoom;
@@ -167,6 +167,15 @@ public class GameState {
         return false;
     }
 
+    Boolean getRoomLight() {
+        Room room = adventurersCurrentRoom;
+        if (room.getLight() == true) {
+            return true;
+        }
+
+        return false;
+    }
+
     Item getItemFromInventoryNamed(String name) throws Item.NoItemException {
 
         for (Item item : inventory) {
@@ -175,6 +184,15 @@ public class GameState {
             }
         }
         throw new Item.NoItemException();
+    }
+
+    Item getItemFromInventoryName(String name) {
+        for (Item item : inventory) {
+            if (item.goesBy(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     Room getAdventurersCurrentRoom() {
@@ -222,6 +240,8 @@ public class GameState {
     public static void unlockExit(Exit exit) {
         exit.setExitLocked(false);
     }
+
+    public static void lightRoom(Room room) {room.setLight(true);}
 
 
     

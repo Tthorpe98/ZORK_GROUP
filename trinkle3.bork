@@ -55,30 +55,36 @@ stomp:The donut is now smooshed.
 ===
 Rooms:
 Rotunda
+light
 Contents: Key
 You are in a beautiful round entry chamber, with tall white pillars that
 seemingly reach to the skies. There is an elevator here.
 ---
 Basement hallway
+light
 Contents: DrPepper
 A long, white hallway stretches to the east and west. It is cold here, and you
 can detect the faint buzz of computer fans. A vending machine hums softly in the
 corner.
 ---
 Stephen's office
+dark
 Contents: StarWarsToy,WawaTravelMug,donut
 This is a cluttered office, with many geeky toys sprawling on a desk.
 ---
 Room B6
+light
 Sunlight streams through tall windows and illuminates a brilliant classroom.
 ---
 Room B13
+light
 Contents: Bomb
 Rows of state-of-the-art computers line the room, with happy young people typing
 merrily away at several of them. They look up and wave hello to you.
 The door locks behind you.
 ---
 Rotunda balcony
+light
 Contents: chainsaw,magicWand
 You stand on a circular white balcony overlooking an entry hall.
 Columnar bannisters in ancient Grecian style stand between you and the
@@ -130,6 +136,13 @@ Stephen's office
 e
 Basement hallway
 unlocked
+---
+===
+NPC:
+Troll
+Stephen's office
+100
+true
 ---
 ===
 

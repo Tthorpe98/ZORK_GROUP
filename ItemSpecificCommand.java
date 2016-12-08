@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.util.Scanner;
 
 class ItemSpecificCommand extends Command {
 
@@ -29,9 +29,9 @@ class ItemSpecificCommand extends Command {
             return "There's no " + noun + " here.";
         }
         exitReferredTo = GameState.instance().getExitInVicinity();
-       if (exitReferredTo == null) {
-           System.out.println("There is no locked exits here!");
-       }
+        if (exitReferredTo == null) {
+            System.out.println("There are no locked exits here!");
+        }
 
         String msg = itemReferredTo.getMessageForVerb(verb);
 
@@ -43,7 +43,7 @@ class ItemSpecificCommand extends Command {
                 String firstThreeLetters = arrayEvent.get(j).substring(0, 3);
 
                 //8-tier if-else statement
-                if(firstThreeLetters.equals("Unl") || firstThreeLetters.equals("[Un")) {
+                if (firstThreeLetters.equals("Unl") || firstThreeLetters.equals("[Un")) {
                     Event.unlock(exitReferredTo);
                 }
                 if (firstThreeLetters.equals("Die") || firstThreeLetters.equals("[Di")) {
@@ -102,14 +102,49 @@ class ItemSpecificCommand extends Command {
                     int dam = Integer.valueOf(effect.substring(effect.indexOf("(") + 1, effect.indexOf(")")));
                     Event.wound(dam);
                 }
+                if (verb.equals("combat")) {
+                    Player pc = new Player("You", GameState.instance().getHealth());
+                    NPC enemy = new NPC(GameState.instance().getAdventurersCurrentRoom(), "Troll", true, 100);
+                    Combat brawl = new Combat(pc, enemy);
+                    while (true) {
+                        Scanner input = new Scanner(System.in);
+                        System.out.println("You have encountered a " + enemy.getName() + " in " + GameState.instance().getAdventurersCurrentRoom().getTitle() + "!");
+                        System.out.println("Would you like to 'attack' the " + enemy.getName() + " or use an 'item'?");
+                        String userAction = input.next();
+                        if (userAction.toLowerCase().equals("attack")) {
+                            brawl.playerAttack(enemy);
+                        } else if (userAction.toLowerCase().equals("item")) {
+                            System.out.println("Which item would you like to use?");
+                            String userItem = input.next();
+                            Item item = GameState.instance().getItemFromInventoryName(userItem);
+                            brawl.playerUseItem(item);
+                        }
+                        else
+                            System.out.println("Invalid entry. Enter 'attack' or 'item' next time!");
+
+                        if(enemy.getHealth() <= 0)
+                        {
+                            System.out.println("Looks like you won! Congrats!");
+                            break;
+                        }
+                        brawl.enemyTurn();
+                        if(pc.getHealth() <= 0)
+                        {
+                            System.out.println("You have lost the battle and died...");
+                            System.exit(0);
+
+                        }
+                    }
+                    }
+                }
+
+                //call the method
+                //do the same thing for the second event(if there is one)
             }
 
-            //call the method
-            //do the same thing for the second event(if there is one)
+            return (msg == null
+                    ? "Sorry, you can't " + verb + " the " + noun + "." : msg) + "\n";
+
         }
 
-        return (msg == null
-                ? "Sorry, you can't " + verb + " the " + noun + "." : msg) + "\n";
-
-    }
 }

@@ -18,13 +18,11 @@ public class Player {
      * Creates a Player object that mirrors the adventurer in order to participate in combat
      * @param name name of this Player
      * @param health maximum health of this Player
-     * @param currentItemEquipped current Item that this Player is equipped with, may be null if nothing
      */
-    Player(String name, int health, Item currentItemEquipped)
+    Player(String name, int health)
     {
         this.name = name;
         this.health = health;
-        this.currentItemEquipped = currentItemEquipped;
     }
     
     /**
@@ -63,24 +61,5 @@ public class Player {
         this.name = name;
     }
             
-    /**
-     * Equips player with specified Item
-     * @param item Item to be equipped
-     */
-    public void equipItem(Item item)
-    {
-        currentItemEquipped = item;
-    }
-            
-    /**
-     * Returns Item that is currently equipped
-     * @return currentItemEquipped field
-     */        
-    public Item getEquipped()
-    {
-        return currentItemEquipped;
-    }
-            
-            
-            
+
 }

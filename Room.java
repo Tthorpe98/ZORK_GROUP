@@ -14,6 +14,7 @@ public class Room {
     private boolean beenHere;
     private ArrayList<Item> contents;
     private ArrayList<Exit> exits;
+    private boolean light; //True means lit false means dark
 
     Room(String title) {
         init();
@@ -28,7 +29,7 @@ public class Room {
     Room(Scanner s, Dungeon d) throws NoRoomException,
             Dungeon.IllegalDungeonFormatException {
 
-        this(s, d, true);
+        this(s, d, true, true);
     }
 
     /** Given a Scanner object positioned at the beginning of a "room" file
@@ -42,7 +43,7 @@ public class Room {
      @throws Dungeon.IllegalDungeonFormatException A structural problem with the
      dungeon file itself, detected when trying to read this room.
      */
-    Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
+    Room(Scanner s, Dungeon d, boolean initState, boolean light) throws NoRoomException,
             Dungeon.IllegalDungeonFormatException {
 
         init();
@@ -50,6 +51,17 @@ public class Room {
         desc = "";
         if (title.equals(Dungeon.TOP_LEVEL_DELIM)) {
             throw new NoRoomException();
+        }
+
+        String roomLight = s.nextLine();
+        System.out.println(roomLight);
+
+        if (roomLight.equals("light")) {
+            this.light = true;
+        }
+
+        if (roomLight.equals("dark")) {
+            this.light = false;
         }
 
         String lineOfDesc = s.nextLine();
@@ -90,6 +102,12 @@ public class Room {
     }
 
     String getTitle() { return title; }
+
+    Boolean getLight() { return this.light;}
+
+    void setLight(Boolean light) {
+        this.light = light;
+    }
 
     void setDesc(String desc) { this.desc = desc; }
 
